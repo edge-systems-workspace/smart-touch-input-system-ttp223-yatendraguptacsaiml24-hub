@@ -1,44 +1,47 @@
 #include <Arduino.h>
+
 /**
- * @file main.ino
+ * @file main.cpp
  * @brief Embedded Touch Detection System using TTP223
- * @author YOUR_NAME
- * @date YYYY-MM-DD
+ * @author yatendraguptacsaiml24-hub (Yatendra Kumar Gupta)
+ * @date 20-02-2026
  *
  * @details
- * Reads digital touch input from TTP223 sensor
- * and displays structured output via Serial Monitor.
+ * Reads digital touch input from a TTP223 touch sensor and prints
+ * structured messages to the Serial Monitor every 300 ms.
  */
 
- // TODO 1:
- // Define touch sensor digital pin (Use pin 2)
+const uint8_t touchPin = 2;
+int touchState = 0;
 
- // TODO 2:
- // Create variable to store touch state
-
+/**
+ * @brief Initialize Serial and touch input.
+ *
+ * @details
+ * Configures the Serial Monitor at 9600 baud and sets the touch
+ * sensor pin mode to INPUT. Prints an initialization banner.
+ */
 void setup() {
-
-    // TODO 3:
-    // Initialize Serial communication (9600 baud rate)
-
-    // TODO 4:
-    // Configure touch pin as INPUT
-
-    // TODO 5:
-    // Print system initialization message
+    Serial.begin(9600);
+    pinMode(touchPin, INPUT);
+    Serial.println("=== TTP223 Touch Detection System Initialized ===");
 }
 
+/**
+ * @brief Poll the TTP223 sensor and report touch state.
+ *
+ * @details
+ * Reads the digital state from `touchPin`. If the sensor output is
+ * HIGH, prints "Touch Detected"; otherwise prints "No Touch".
+ * The check runs repeatedly with a 300 ms delay between readings.
+ */
 void loop() {
+    touchState = digitalRead(touchPin);
 
-    // TODO 6:
-    // Read digital value from touch sensor
-
-    // TODO 7:
-    // If touch detected (HIGH)
-    //     Print "Touch Detected"
-    // Else
-    //     Print "No Touch"
-
-    // TODO 8:
-    // Add small delay (200–500ms)
+    if(touchState == HIGH){
+        Serial.println("Touch Detected");
+    }else{
+        Serial.println("No Touch");
+    }
+    delay(300);
 }
