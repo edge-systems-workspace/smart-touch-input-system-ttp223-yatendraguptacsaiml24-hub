@@ -7,7 +7,7 @@
  * @date 20-02-2026
  *
  * @details
- * Reads digital touch input from a TTP223 touch sensor and prints
+ * Reads digital touch input from a TTP223 touch sensor and prints             
  * structured messages to the Serial Monitor every 300 ms.
  */
 
